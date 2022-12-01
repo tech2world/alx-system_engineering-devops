@@ -1,2 +1,2 @@
 #!/bin/bash
-o+wrx
+chmod o+wrx hello
