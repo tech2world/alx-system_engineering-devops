@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# A scripts that prints 'bad luck' for i==4, 'good luck' for i==8
+# and 'Best School' for the rest using while loop and if
+
+i=1
+
+while [ $i -lt 11 ]
+do
+    if [ $i -eq 4 ]
+    then
+        echo "bad luck"
+    elif [ $i -eq 8 ]
+    then
+        echo "good luck"
+    else
+        echo "Best School"
+    fi
+    ((i++))
+done
