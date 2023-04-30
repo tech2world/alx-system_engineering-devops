@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # A scripts that prints 'bad luck' for i==4, 'good luck' for i==8
 # and 'Best School' for the rest using while loop and if
 
