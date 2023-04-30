@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+#display 'fizzbuzz' for multiple of 3 and 5
+#display 'Fizz' for multiple of 3
+#display 'Buzz' for multiple of 5
+
+for i in {1..100}
+do
+    if (( i % 3 == 0 && i % 5 == 0 ))
+    then
+        echo "FizzBuzz"
+    elif (( i % 3 == 0))
+    then
+        echo "Fizz"
+    elif (( i % 5 == 0))
+    then
+        echo "Buzz"
+    else
+        echo "$i"
+    fi
+    (( i++ ))
+done
