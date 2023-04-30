@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # A script that prints 'Best school' 10 times but for the 9th time
 # prints 'Best School' then 'Hi' on a new line using while loop and if
 
