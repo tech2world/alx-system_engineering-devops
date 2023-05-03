@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#dipslays lines containing the word bash, gets PID of my bash process.
+# shellcheck disable=SC2009
+
+ps auxf | grep bash
