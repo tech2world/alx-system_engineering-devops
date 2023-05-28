@@ -1,0 +1,29 @@
+
+use link above to access the whiteboard design
+
+The server
+    The server is a physical or virtual machine that hosts the web infrastructure.
+    It runs on a special OS that helps it perform its services.
+Web server(Nginx)
+    A web server is installed on the server to handle http request and 
+    serve static webpages such as (html, css, js e.t.c) to the clients.
+Application Server
+    An application server is responsible for execeuting the server-side code and generate dynamic content for the website.
+Application files (code base)
+    The code  base contains server-side code that generates dynamic content for the website.
+Database (MySQL)
+    The database stores and manages the website's data. The application 
+    server interacts with the database to fetch or store data.
+Domain Name System (DNS)
+    The DNS translates the website's name  `www.foobar.com` into its
+    corresponding ip address 8.8.8.8
+Role of the Domain name
+    The domain name is what the user enters on the computer to access the website
+Communication with user's computer
+    The computer communicates by sending an http request to the server's ip address.
+
+# Problem with this infrastructure
+- Single Point Of Failure(SPOF): since we have only one server, any failure or issue with the server can cause downside and the website will be inaccessible. 
+- Downtime during maintenance: when performing maintenance tasks like updating server or code base or web server needs to be restarted this can cause downtime and the website will not be available during that period.
+- Scalability: with a single server this infrastructure cannot handle significant increase in traffic as the server may become overloaded
+resulting in slow response time or even crashing.

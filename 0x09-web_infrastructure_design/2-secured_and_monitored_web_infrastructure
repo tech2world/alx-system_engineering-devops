@@ -1,0 +1,21 @@
+`https://docs.google.com/document/d/1M0WfgjSzCyYY4XhOqGAtkpCvIxOs1mvScREO94FfHZU/edit?usp=sharing`
+use link above to access the whiteboard design
+
+# Additional componenets
+
+- Load Balancer with SSL Termination: The load balancer distributes incoming traffic among multiple servers, improving performance and availability. SSL termination at the load balancer decrypts the incoming HTTPS traffic and forwards it to the servers as HTTP.
+- Firewalls are added to enhance security by controlling incoming and outgoing network traffic. Each server is protected by a firewall, which allows only authorized traffic to reach the server and blocks potential threats.
+- HTTPS encrypts the traffic between the user's browser and the web server, ensuring secure communication and protecting sensitive data from unauthorized access or tampering.
+- Monitoring is used to gain insights into the infrastructure's performance, identify bottlenecks, detect anomalies, and facilitate proactive maintenance. Monitoring clients collect various metrics and log data from servers, which is sent to the monitoring service for analysis and visualization.
+- To monitor the web server's QPS (Queries Per Second), the monitoring client can track the number of incoming HTTP requests per second. This metric helps assess the web server's load, performance, and capacity requirements.
+
+# Problems with this infrastructure
+1. Terminating SSL at the Load Balancer:
+- Terminating SSL at the load balancer level can introduce a potential security issue since the decrypted traffic flows within the infrastructure.
+- To mitigate this, the internal network traffic between the load balancer and servers should be secured using appropriate measures, such as private network connections or encryption protocols.
+2. Single MySQL Server for Writes:
+- Having only one MySQL server capable of accepting writes introduces a single point of failure and potential performance bottleneck.
+- Implementing database replication and adding a replica server(s) can improve fault tolerance and distribute the write load.
+3. Identical Components on Servers:
+- Having servers with all the same components (database, web server, and application server) might lead to a lack of component isolation and increased risk.
+- For better security and fault tolerance, separating these components onto dedicated servers or utilizing containerization can be considered.

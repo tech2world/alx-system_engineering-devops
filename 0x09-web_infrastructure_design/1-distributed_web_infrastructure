@@ -1,0 +1,19 @@
+`https://docs.google.com/document/d/1te8vmCIz8ggKNggorgt9NoNFrOqhb82W8I8Vv4wpTAM/edit?usp=sharing`
+use link above to access the whiteboard design
+
+# Addditional components
+- 1 webserver: an additional webserver provides redundancy so that
+there is reduced or no down time when one webserver is down.
+- Load Balancer (HAProxy): this used to distribute traffic/requests between
+the two servers. Using the round robin setup, the load balancer sends new
+requests to the next available server
+- Load Balancer Setup: it uses an active-active setup, both server are actively handling traffic simultaneously.
+- Database Primary-Replica (Master-Slave) Cluster: the database is configured as a Primary-Replica cluster to ensure data redundancy and fault tolerance. The Primary node accepts write requests and replicates data changes to the Replica node. The Replica node synchronize data from the Primary node and can handle read requests. This setup improves performance, allows for failover, and protects against data loss.
+- Primary Node vs. Replica Node: The Primary node is responsible for handling write operations, such as inserts, updates, and deletes. The Replica node synchronize data from the Primary node and primarily handle read operations.
+
+Problems with this infrastructure
+1. Single Point Of Failure: despite introducing additional servers, there may still be a single point of failure if any critical component fails e.g. load balancer.
+2. Security Issues: The infrastructure lacks a firewall, which leaves it vulnerable to unauthorized access or attacks.
+    - HTTPS (TLS/SSL) is not implemented, leading to the transmission of data in plain text, making it susceptible to interception or manipulation.
+3. Monitoring: The infrastructure does not include monitoring tools or mechanisms to track performance, detect failures, or ensure timely response to issues.
+    - Implementing monitoring solutions helps identify problems, optimize performance, and provide proactive management of the infrastructure.
