@@ -1,2 +1,8 @@
 # ssh client config with no password authentication
 Host *
+    SendEnv LANG LC_*
+    HashKnownHosts yes
+    GSSAPIAuthentification yes
+    GSSAPIDelegateCredentials no
+    IdentityFile ~/.ssh/school
+    PasswordAuthentication no
