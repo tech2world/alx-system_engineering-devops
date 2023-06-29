@@ -1,0 +1,2 @@
+# ssh client config with no password authentication
+Host *
