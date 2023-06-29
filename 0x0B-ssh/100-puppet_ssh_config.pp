@@ -1,22 +1,13 @@
-# puppet script to create config file
-file_line {'password auth': 
-  ensure   => 'present',
-  path      => '/etc/ssh/ssh_config',
-  line      => '    PasswordAuthentication no',
-  #after    => undef,
-  #match    => undef, # /.*match/
-  #multiple => undef, # 'true' or 'false'
-  #name     => undef,
-  #replace  => true, # 'true' or 'false'
-}
+file { '/etc/ssh/ssh_config':
+  ensure  => 'file',
+  owner   => 'root',
+  group   => 'root',
+  mode    => '0644',
+  content => "\
+# This line manages the PasswordAuthentication setting
+PasswordAuthentication no
 
-file_line {'set identity file': 
-  ensure   => 'present',
-  path      => '/etc/ssh/ssh_config',
-  line      => '    IdentityFile ~/.ssh/school',
-  #after    => undef,
-  #match    => undef, # /.*match/
-  #multiple => undef, # 'true' or 'false'
-  #name     => undef,
-  #replace  => true, # 'true' or 'false'
+# This line manages the IdentityFile setting
+IdentityFile ~/.ssh/school
+",
 }
