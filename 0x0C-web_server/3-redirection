@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Install Nginx
+
+sudo apt-get update -y
+sudo apt-get install -y nginx
+
+# Configure Nginx to perform the redirection
+sudo bash -c 'cat << EOF > /etc/nginx/sites-available/default
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    server_nmae devgeek.tech
+
+    root /var/www/html;
+    index index.html index.htm index.nginx-debian.html 404.html;
+
+    location /redirect_me {
+        return 301 http://example.com/newpage;
+    }
+
+    location / {
+        try_files \$uri \$uri/ =404;
+    }
+}
+EOF'
+
+# Remove the default Nginx welcome page
+sudo rm /var/www/html/index.html
+
+# Restart Nginx service
+sudo service nginx restart
