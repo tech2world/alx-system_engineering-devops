@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# debugging nginx port 80
+# by default nginx is configured to listen to port 80 for hhtp connection
+
+sudo in -sf /etc/ngnix/sites-available/default /etc/nginx/sites-enabled/default
+sudo service nginx restart
