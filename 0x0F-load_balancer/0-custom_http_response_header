@@ -1,0 +1,12 @@
+#!/bin/bash
+# install nginx
+apt-get update
+apt-get install nginx -y
+
+# create a custom header
+echo "add_header X-Served-By \$hostname;" > /etc/nginx/conf.d/custom-header.conf
+echo "Hello World!" | tee /var/www/html/index.html
+echo "Ceci n'est pas une page" > var/www/html/404.html 
+
+# Restart Nginx
+service nginx restart
