@@ -4,7 +4,7 @@ apt-get update
 apt-get install nginx -y
 
 # create a custom header
-echo "add_header X-Served-By \$hostname;" > /etc/nginx/conf.d/custom-header.conf
+sed -i "47\\\tadd_header X-served-By $HOSTNAME;" /etc/nginx/sites-available/default
 echo "Hello World!" | tee /var/www/html/index.html
 echo "Ceci n'est pas une page" > var/www/html/404.html 
 
