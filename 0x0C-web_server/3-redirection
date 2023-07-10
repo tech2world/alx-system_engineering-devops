@@ -16,7 +16,7 @@ server {
     index index.html index.htm index.nginx-debian.html 404.html;
 
     location /redirect_me {
-        return 301 http://example.com/newpage;
+        return 301 http://github.com/tech2world;
     }
 
     location / {
