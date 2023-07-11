@@ -1,7 +1,7 @@
 # create a custom header using puppet
 
 exec {'update':
-  command => 'apt-get update -y',
+  command => '/usr/bin/apt-get update',
 }
 -> package {'nginx':
   ensure  => 'present',
