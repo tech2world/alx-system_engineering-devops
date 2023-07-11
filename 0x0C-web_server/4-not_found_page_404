@@ -4,15 +4,17 @@ sudo apt-get update -y
 sudo apt-get upgrade -y
 sudo apt-get install nginx -y
 ufw allow 'Nginx HTTP'
+# custom index page
 echo "Hello World!" > /var/www/html/index.html
 
+# new sever config
 new_website=\
 "server {
-        listen 80;
-        listen [::]:80;
-        server_name tmaworldwide.tech;
-        root /var/www/html;
+        listen 80 default_server;
+        listen [::]:80 default_server;
+                root /var/www/html;
         index index.html index.htm index.nginx-debian.html 404.html;
+        server_name _;
         
         location / {
                 try_files \$uri \$uri/ =404;
@@ -26,8 +28,11 @@ new_website=\
         }
 }"
 
+# redirection
+echo "Ceci n'est pas une page" > /var/www/html/404.html
 echo "$new_website" > /etc/nginx/sites-available/default
 
+# start nginx
 if [ "$(pgrep nginx)" -le 0 ];
 then
     sudo service nginx start
