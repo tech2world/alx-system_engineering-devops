@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# install and configure HAproxy load balancer
+
+# install HAproxy
+sudo apt-get update -y
+sudo apt-get install haproxy -y
+
+# edit config file
+server_config=\
+"
+frontend devgeek_frontend
+	bind *:80
+	mode http
+	default_backend devgeek_backend
+backend devgeek_backend
+	balance roundrobin
+	server 218728-web-01 100.26.170.113:80 check
+	server 218728-web-02 34.201.165.1:80 check
+"
+echo "$server_config" | sudo tee -a /etc/haproxy/haproxy.cfg
+
+# enable haproxy in the init script
+echo "ENABLED=1" | sudo tee -a /etc/default/haproxy
+
+# test config file
+sudo haproxy -c -f /etc/haproxy/haproxy.cfg
+
+# restart
+sudo service haproxy restart
