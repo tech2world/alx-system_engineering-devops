@@ -1,33 +1,14 @@
 #!/usr/bin/env bash
-# Configure your Nginx server, so that '/redirect_me' is redirecting to another page.
+# install nginx on the server
 
 sudo apt-get update -y
 sudo apt-get install -y nginx
 sudo ufw allow 'Nginx HTTP'
 
-# Configure Nginx to perform the redirection
-sudo bash -c 'cat << EOF > /etc/nginx/sites-available/default
-server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
+# sudo sed -i 's/#listen 80;/listen 80;/' /etc/nginx/sites-available/default
 
-    server_nmae devgeek.tech
+echo "Hello World!" | sudo tee /var/www/html/index.html
+sudo sed -i "48i\\\tif (\$request_filename ~ redirect_me){\n\t\t\
+rewrite ^ https://github.com/tech2world permanent;\n\t}" /etc/nginx/sites-available/default
 
-    root /var/www/html;
-    index index.html index.htm index.nginx-debian.html 404.html;
-
-    location /redirect_me {
-        return 301 http://github.com/tech2world;
-    }
-
-    location / {
-        try_files \$uri \$uri/ =404;
-    }
-}
-EOF'
-
-# Remove the default Nginx welcome page
-sudo rm /var/www/html/index.html
-
-# Restart Nginx service
 sudo service nginx restart
