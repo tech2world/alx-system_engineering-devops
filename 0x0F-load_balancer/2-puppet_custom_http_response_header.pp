@@ -7,10 +7,9 @@ exec {'update':
   ensure  => 'present',
 }
 -> file_line {'http_header':
-  path  => '/etc/nginx/sites-available/default',
-  line  => "	location / {
-  add_header X-Served-By ${hostname};",
-  match => '^\tlocation / {',
+  path  => '/etc/nginx/nignix.conf',
+  match => 'http {',
+  line  => "http {\n\tadd_header X-Served-By \"${hostname}\";",
 }
 -> exec {'run':
   command => 'usr/sbin/service nginx restart',
