@@ -1,0 +1,24 @@
+# install ufw (uncomplicated firewall)
+sudo apt update
+sudo apt install ufw -y
+
+# disable firewall
+sudo ufw disable
+
+# change default settings
+sudo ufw deny incoming
+sudo ufw allow outgoing
+
+# allow incoming traffic on specific ports
+sudo ufw allow 22/tcp
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+
+# verify rules that have been added
+sudo ufw show added
+
+# enable firewall
+sudo ufw enable
+
+# check status and verify rules where applied correctly
+sudo ufw status verbose
