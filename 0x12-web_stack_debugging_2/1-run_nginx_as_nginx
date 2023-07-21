@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# run nginx as nginx
+
+# Update the nginx user in the configuration file
+sed -i 's/#user www-data/user nginx/' /etc/nginx/nginx.conf
+
+# Update the port in the default site configuration
+sed -i 's/80/8080/g' /etc/nginx/sites-available/default
+
+# change file permission
+chmod 644 /etc/nginx/nginx.conf
+
+# kill apache so it dosent interfere
+pkill apache2
+
+# Restart nginx to apply the changes
+sudo -u nginx service nginx restart
