@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# identify as another user
+
+# Check if an argument is provided
+if [ -z "$1" ]
+then
+    echo "Error: Please provide a user as an argument."
+    exit 1
+fi
+
+# Run the whoami command under the user passed as an argument
+sudo -u "$1" whoami
