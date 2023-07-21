@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Perform the MySQL backup using mysqldump and compress the output to a tar.gz archive
 
 # Get the current date in the required format (day-month-year)
