@@ -1,0 +1,18 @@
+#!/bin/bash
+# Perform the MySQL backup using mysqldump and compress the output to a tar.gz archive
+
+# Get the current date in the required format (day-month-year)
+date=$(date +%d-%m-%Y)
+
+# Check if the password argument is provided
+if [ -z "$1" ]
+then
+    echo "Error: Please provide the MySQL root password as an argument."
+    exit 1
+fi
+
+mysqldump -u root -p"$1" --all-databases > backup.sql
+tar -czvf "$date.tar.gz" backup.sql
+
+# Clean up the temporary backup file
+# rm backup.sql
