@@ -23,5 +23,5 @@ if __name__ == "__main__":
     with open(file_name, "w") as file:
         for task in tasks:
             file.write('"{}","{}","{}","{}"\n'
-                       .format(employee_id, username,task.get('completed'), 
+                       .format(employee_id, username, task.get('completed'),
                                task.get('title')))
