@@ -1,34 +1,37 @@
 #!/usr/bin/python3
-"""a script that gathers data from an API"""
+""" a script to get data using API"""
 import requests
 from sys import argv
 
-
 if __name__ == "__main__":
-    # get employee id from command line
-    employee_id = argv[1]
-    api_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
+    if len(argv) != 2:
+        print("Error: Please provide an employee ID as a command-line argument.")
+    else:
+        employee_id = argv[1]
+        api_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
 
-    # sending get request to API
-    response = requests.get(api_url)
-    employee_name = response.json.get(api_url)
+        # Sending a get request to API for employee info
+        response = requests.get(api_url)
 
-    todo_url = api_url + '/todos'
-    response = requests.get(todo_url)
-    todo_task = response.json()
+        if response.status_code == 200:
+            employee_data = response.json()
+            employee_name = employee_data.get('name', 'Unknown Employee')
 
-    # extract employee information
-    name = response.json().get('name')
-    task = 0
-    todo_task = []
+            # Sending a get request to API for employee's TODO tasks
+            todo_url = api_url + '/todos'
+            response = requests.get(todo_url)
 
-    for todo in todo_task:
-        if todo.get('completed'):
-            todo_task.append(todo)
-            task += 1
-    
-    print("Employee {} is done with tasks({}/{}):"
-          .format(name, task, len(todo_task)))
-    
-    for task in todo_task:
-        print("\t {}".format(task.get('title')))
+            if response.status_code == 200:
+                todo_data = response.json()
+                completed_tasks = [task for task in todo_data if task.get('completed')]
+
+                print(f"Employee {employee_name} is done with tasks({len(completed_tasks)}/{len(todo_data)}):")
+
+                for task in completed_tasks:
+                    print("\t{}".format(task.get('title')))
+            else:
+                print(f"Error: API request for TODO tasks failed with status code {response.status_code}")
+                exit(1)
+        else:
+            print(f"Error: API request for employee info failed with status code {response.status_code}")
+            exit(1)
