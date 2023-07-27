@@ -5,7 +5,7 @@ from sys import argv
 
 if __name__ == "__main__":
     if len(argv) != 2:
-        print("Error: Please provide an employee ID as a command-line argument.")
+        print("Error: Please provide an employee ID.")
     else:
         employee_id = argv[1]
         api_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
