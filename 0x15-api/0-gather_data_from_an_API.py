@@ -22,10 +22,10 @@ if __name__ == "__main__":
         response = requests.get(todo_url)
 
         todo_data = response.json()
-        completed_tasks = [task for task in todo_data if task.get('completed')]
+        done_tasks = [task for task in todo_data if task.get('completed')]
 
         print(f"Employee {employee_name} is done with tasks\
-              ({len(completed_tasks)}/{len(todo_data)}):")
+              ({len(done_tasks)}/{len(todo_data)}):")
 
-        for task in completed_tasks:
+        for task in done_tasks:
             print("\t{}".format(task.get('title')))

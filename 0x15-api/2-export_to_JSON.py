@@ -26,7 +26,7 @@ if __name__ == "__main__":
             "completed": task.get('completed'),
             "username": username
             })
-    
+
     file_name = employee_id + '.json'
 
     with open(file_name, 'w') as file:
