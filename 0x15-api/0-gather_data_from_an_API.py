@@ -13,7 +13,6 @@ if __name__ == "__main__":
         # Sending a get request to API for employee info
         response = requests.get(api_url)
 
-    
         employee_data = response.json()
         employee_name = employee_data.get('name', 'Unknown Employee')
 
