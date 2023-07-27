@@ -30,7 +30,6 @@ if __name__ == "__main__":
                 "completed": task.get('completed'),
                 "username": task.get('username')
             })
-    
+
     with open('todo_all_employees.json', 'w') as file:
         json.dump(dict, file)
-    
