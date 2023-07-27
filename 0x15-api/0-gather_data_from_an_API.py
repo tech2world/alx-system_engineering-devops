@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" a script to get data using API"""
+""" a script that uses REST API to get data"""
 
 import requests
 from sys import argv
