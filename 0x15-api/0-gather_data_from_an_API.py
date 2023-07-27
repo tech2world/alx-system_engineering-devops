@@ -16,7 +16,7 @@ if __name__ == "__main__":
         employee_data = response.json()
         employee_name = employee_data.get('name', 'Unknown Employee')
 
-        # Sending a get request to API for employee's TODO tasks
+        # Sending a get request to API for employee's todo tasks
         todo_url = api_url + '/todos'
         response = requests.get(todo_url)
 
