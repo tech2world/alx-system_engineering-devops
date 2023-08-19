@@ -2,13 +2,13 @@
 exec { 'fix-for-nginx-ulimit':
   command => 'sed -i "s/15/4096/" /etc/default/nginx',
   path    => '/usr/local/bin/:/bin/',
-  onlyif  => 'grep "ULIMIT=-n 15" /etc/default/nginx', # Check if the line exists before making changes
+  onlyif  => 'grep -q "ULIMIT=-n 15" /etc/default/nginx', # Corrected grep syntax
 }
 
 # Restart Nginx
-service { 'nginx-restart':
-  name     => 'nginx',
+service { 'nginx':
   ensure   => 'running',
   enable   => true,
-  require  => Exec['fix-for-nginx-ulimit'], # Ensure that the ulimit change is applied before restarting
+  require  => Exec['fix-for-nginx-ulimit'],
+  subscribe => Exec['fix-for-nginx-ulimit'], # Make sure the service restarts after the exec changes the ulimit
 }
