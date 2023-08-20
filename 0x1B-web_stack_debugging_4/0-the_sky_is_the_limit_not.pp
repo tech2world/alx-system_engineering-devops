@@ -7,8 +7,8 @@ exec { 'fix-for-nginx-ulimit':
 
 # Restart Nginx
 service { 'nginx-restart':
-  name     => 'nginx',
-  ensure   => 'running',
-  enable   => true,
-  require  => Exec['fix-for-nginx-ulimit'], # Ensure that the ulimit change is applied before restarting
+  ensure  => 'running',
+  name    => 'nginx',
+  enable  => true,
+  require => Exec['fix-for-nginx-ulimit'], # Ensure that the ulimit change is applied before restarting
 }
